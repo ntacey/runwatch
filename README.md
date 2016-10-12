@@ -1,0 +1,1 @@
+An android app for tracking progress on runs. Allows users to compare times at "checkpoints" to see how the run compares to their previous and best run times. 
