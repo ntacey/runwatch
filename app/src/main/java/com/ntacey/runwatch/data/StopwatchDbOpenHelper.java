@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by PC on 9/27/2016.
+ * Created by Nick on 9/27/2016.
  *
- * If database exists, use it. if not, create it
+ * Application db setup class
  */
 
 public class StopwatchDbOpenHelper extends SQLiteOpenHelper {
