@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.ntacey.runwatch.R;
 
 /**
- * Created by PC on 9/26/2016.
+ * Created by Nick on 9/26/2016.
  */
 
 public class RouteWatchActivity extends AppCompatActivity {

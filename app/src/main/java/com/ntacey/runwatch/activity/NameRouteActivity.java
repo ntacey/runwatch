@@ -24,11 +24,17 @@ public class NameRouteActivity extends AppCompatActivity {
         Button tButton = (Button)findViewById(R.id.button);
         final EditText tEditText = (EditText)findViewById(R.id.editText);
 
+        /*
+         * Once start button gets clicked, capture the text in the 'editText'
+         * field and store it in Realm. Then go on to the new route activity
+         * which starts the timer
+         */
         tButton.setOnClickListener(
                 new View.OnClickListener()
                 {
                     public void onClick(View view) {
-                        String sEditText = tEditText.toString();
+                        //TODO input validation
+                        String sEditText = tEditText.getText().toString();
 
                         saveRouteName(sEditText);
 

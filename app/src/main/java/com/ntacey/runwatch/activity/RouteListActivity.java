@@ -13,7 +13,7 @@ import com.ntacey.runwatch.models.Route;
 import java.util.ArrayList;
 
 /**
- * Created by PC on 9/26/2016.
+ * Created by Nick on 9/26/2016.
  */
 
 public class RouteListActivity extends AppCompatActivity {
@@ -31,7 +31,7 @@ public class RouteListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_routelist);
 
         RouteDAOImpl rdi = new RouteDAOImpl();
-        ArrayList<Route> routes = new ArrayList<>(rdi.getRoutes());
+        ArrayList<Route> routes = new ArrayList<>(rdi.getRoutes()); //list of routes stored in realm
 
         if (routes != null && !routes.isEmpty()) {
 
@@ -40,8 +40,10 @@ public class RouteListActivity extends AppCompatActivity {
         }
     }
 
+    // on user clicking add new route, go to namerouteacitivity
     public void addNewRoute(View view) {
         Intent i = new Intent(this, NameRouteActivity.class);
         startActivity(i);
     }
+
 }
