@@ -1,6 +1,5 @@
 package com.ntacey.runwatch;
 
-import com.ntacey.runwatch.dao.RunDAOImpl;
 import com.ntacey.runwatch.models.Route;
 import com.ntacey.runwatch.services.RouteListService;
 
@@ -21,13 +20,10 @@ import static junit.framework.Assert.assertTrue;
 
 public class RouteListServiceTest {
 
-
-    private RunDAOImpl rundao;
     private RouteListService rls;
 
     @Before
     public void setup(){
-        rundao = new RunDAOImpl();
         rls = new RouteListService();
     }
 
@@ -36,17 +32,18 @@ public class RouteListServiceTest {
         Route route = new Route();
         String dt = "Thu Oct 13 11:33:47 PDT 2016";
         DateFormat df = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
-        Date date = null;
+        Date routeTime = null;
+        String routeId = "53299a16-022d-4051-91cb-3347b7488353";
+        String routeName = "psu campus";
+
         try {
-            date = df.parse(dt);
-            System.out.println(date);
+            routeTime = df.parse(dt);
         } catch (ParseException e) {
             e.printStackTrace();
         } finally {
-
-            route.setId("53299a16-022d-4051-91cb-3347b7488353");
-            route.setDateCreated(date);
-            route.setName("psu campus");
+            route.setId(routeId);
+            route.setDateCreated(routeTime);
+            route.setName(routeName);
 
             assertTrue(rls.routeHasRun(route));
         }
@@ -55,11 +52,13 @@ public class RouteListServiceTest {
     @Test
     public void routeHasRunNegativeTest(){
         Route route = new Route();
-        Date timestamp = new Date();
+        Date routeTime = new Date();
+        String routeId = "mocked route";
+        String routeName = "not actually a route";
 
-        route.setId("mocked route");
-        route.setDateCreated(timestamp);
-        route.setName("not actually a route");
+        route.setId(routeId);
+        route.setDateCreated(routeTime);
+        route.setName(routeName);
 
         assertFalse(rls.routeHasRun(route));
     }
