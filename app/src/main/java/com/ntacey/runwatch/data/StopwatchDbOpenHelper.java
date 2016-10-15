@@ -25,7 +25,7 @@ public class StopwatchDbOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-
+        //TODO handle db upgrade
     }
 
     //create tables here

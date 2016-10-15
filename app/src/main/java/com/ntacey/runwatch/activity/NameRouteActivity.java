@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.UUID;
 
 public class NameRouteActivity extends AppCompatActivity {
+    private String defaultRouteNameUserInput = "Name of new route:";
+    private int routeNameMaxLength = 35; // Length of name route input can't be longer then
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,7 @@ public class NameRouteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nameroute);
 
         Button tButton = (Button)findViewById(R.id.button);
-        final EditText tEditText = (EditText)findViewById(R.id.editText);
+        final EditText tEditText = (EditText)findViewById(R.id.editText); //user input route name
 
         /*
          * Once start button gets clicked, capture the text in the 'editText'
@@ -33,18 +35,23 @@ public class NameRouteActivity extends AppCompatActivity {
                 new View.OnClickListener()
                 {
                     public void onClick(View view) {
-                        //TODO input validation
+
                         String sEditText = tEditText.getText().toString();
+                        if (routeNameInputValidation(sEditText)) {
+                            saveRouteName(sEditText);
 
-                        saveRouteName(sEditText);
-
-                        Intent i = new Intent(view.getContext(), NewRouteActivity.class);
-                        startActivity(i);
+                            Intent i = new Intent(view.getContext(), NewRouteActivity.class);
+                            startActivity(i);
+                        }
                     }
                 }
         );
     }
 
+    /*
+     * Generate a uuid to use as primary key, current timestamp as date created,
+     * and then save user's input route name. Use dao to save to db.
+     */
     private void saveRouteName(String routeName) {
         //TODO add a check to make sure name doesn't already exist in db
         Route newRoute = new Route();
@@ -57,5 +64,11 @@ public class NameRouteActivity extends AppCompatActivity {
         newRoute.setDateCreated(timestamp);
 
         rdi.addRoute(newRoute);
+    }
+
+    // Validate route name is not default text or too long
+    private Boolean routeNameInputValidation(String editTextString) {
+        return editTextString != defaultRouteNameUserInput
+                && editTextString.length() <= routeNameMaxLength;
     }
 }
