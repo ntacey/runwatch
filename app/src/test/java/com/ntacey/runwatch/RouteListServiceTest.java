@@ -19,7 +19,6 @@ import static junit.framework.Assert.assertTrue;
  */
 
 public class RouteListServiceTest {
-
     private RouteListService rls;
 
     @Before
